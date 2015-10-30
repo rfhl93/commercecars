@@ -24,16 +24,16 @@ public class Usuario implements Serializable
    private int version;
 
    @Column(length = 100, name = "nome", nullable = false)
-   private String Nome;
+   private String nome;
 
    @Column(length = 100, name = "sobrenome", nullable = false)
-   private String Sobrenome;
+   private String sobrenome;
 
    @Column(name = "email", nullable = false)
-   private String Email;
+   private String email;
 
    @Column(length = 32, name = "senha", nullable = false)
-   private String Senha;
+   private String senha;
 
    public Long getId()
    {
@@ -88,56 +88,56 @@ public class Usuario implements Serializable
 
    public String getNome()
    {
-      return Nome;
+      return nome;
    }
 
    public void setNome(String Nome)
    {
-      this.Nome = Nome;
+      this.nome = Nome;
    }
 
    public String getSobrenome()
    {
-      return Sobrenome;
+      return sobrenome;
    }
 
    public void setSobrenome(String Sobrenome)
    {
-      this.Sobrenome = Sobrenome;
+      this.sobrenome = Sobrenome;
    }
 
    public String getEmail()
    {
-      return Email;
+      return email;
    }
 
    public void setEmail(String Email)
    {
-      this.Email = Email;
+      this.email = Email;
    }
 
    public String getSenha()
    {
-      return Senha;
+      return senha;
    }
 
    public void setSenha(String Senha)
    {
-      this.Senha = Senha;
+      this.senha = Senha;
    }
 
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
-      if (Nome != null && !Nome.trim().isEmpty())
-         result += "Nome: " + Nome;
-      if (Sobrenome != null && !Sobrenome.trim().isEmpty())
-         result += ", Sobrenome: " + Sobrenome;
-      if (Email != null && !Email.trim().isEmpty())
-         result += ", Email: " + Email;
-      if (Senha != null && !Senha.trim().isEmpty())
-         result += ", Senha: " + Senha;
+      if (nome != null && !nome.trim().isEmpty())
+         result += "Nome: " + nome;
+      if (sobrenome != null && !sobrenome.trim().isEmpty())
+         result += ", Sobrenome: " + sobrenome;
+      if (email != null && !email.trim().isEmpty())
+         result += ", Email: " + email;
+      if (senha != null && !senha.trim().isEmpty())
+         result += ", Senha: " + senha;
       return result;
    }
 }
