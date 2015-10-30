@@ -14,7 +14,7 @@ import java.lang.Override;
 @Table(name = "usuario")
 public class Usuario implements Serializable
 {
-
+ 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
    @Column(name = "id", updatable = false, nullable = false)
