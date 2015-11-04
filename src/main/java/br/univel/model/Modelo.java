@@ -9,15 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
-import br.univel.model.Modelo;
-import java.util.Set;
-import java.util.HashSet;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import br.univel.model.Marca;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "marca")
-public class Marca implements Serializable
+@Table(name = "modelo")
+public class Modelo implements Serializable
 {
 
    @Id
@@ -28,11 +25,8 @@ public class Marca implements Serializable
    @Column(name = "version")
    private int version;
 
-   @Column(length = 50, name = "nome", nullable = false)
-   private String nomoe;
-
-   @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
-   private Set<Modelo> modelos = new HashSet<Modelo>();
+   @ManyToOne
+   private Marca marca;
 
    public Long getId()
    {
@@ -55,17 +49,26 @@ public class Marca implements Serializable
    }
 
    @Override
+   public String toString()
+   {
+      String result = getClass().getSimpleName() + " ";
+      if (id != null)
+         result += "id: " + id;
+      return result;
+   }
+
+   @Override
    public boolean equals(Object obj)
    {
       if (this == obj)
       {
          return true;
       }
-      if (!(obj instanceof Marca))
+      if (!(obj instanceof Modelo))
       {
          return false;
       }
-      Marca other = (Marca) obj;
+      Modelo other = (Modelo) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -85,32 +88,13 @@ public class Marca implements Serializable
       return result;
    }
 
-   public String getNomoe()
+   public Marca getMarca()
    {
-      return nomoe;
+      return this.marca;
    }
 
-   public void setNomoe(String nomoe)
+   public void setMarca(final Marca marca)
    {
-      this.nomoe = nomoe;
-   }
-
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (nomoe != null && !nomoe.trim().isEmpty())
-         result += "nomoe: " + nomoe;
-      return result;
-   }
-
-   public Set<Modelo> getModelos()
-   {
-      return this.modelos;
-   }
-
-   public void setModelos(final Set<Modelo> modelos)
-   {
-      this.modelos = modelos;
+      this.marca = marca;
    }
 }
