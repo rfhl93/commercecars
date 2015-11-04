@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.HashSet;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
+import br.univel.model.Venda;
 
 @Entity
 @Table(name = "usuario")
@@ -42,6 +43,9 @@ public class Usuario implements Serializable
 
    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
    private Set<Compra> compras = new HashSet<Compra>();
+
+   @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+   private Set<Venda> vendas = new HashSet<Venda>();
 
    public Long getId()
    {
@@ -157,5 +161,15 @@ public class Usuario implements Serializable
    public void setCompras(final Set<Compra> compras)
    {
       this.compras = compras;
+   }
+
+   public Set<Venda> getVendas()
+   {
+      return this.vendas;
+   }
+
+   public void setVendas(final Set<Venda> vendas)
+   {
+      this.vendas = vendas;
    }
 }
