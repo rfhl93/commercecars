@@ -9,12 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import br.univel.model.Compra;
+import java.util.Set;
+import java.util.HashSet;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable
 {
- 
+
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
    @Column(name = "id", updatable = false, nullable = false)
@@ -34,6 +39,9 @@ public class Usuario implements Serializable
 
    @Column(length = 32, name = "senha", nullable = false)
    private String senha;
+
+   @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+   private Set<Compra> compras = new HashSet<Compra>();
 
    public Long getId()
    {
@@ -139,5 +147,15 @@ public class Usuario implements Serializable
       if (senha != null && !senha.trim().isEmpty())
          result += ", Senha: " + senha;
       return result;
+   }
+
+   public Set<Compra> getCompras()
+   {
+      return this.compras;
+   }
+
+   public void setCompras(final Set<Compra> compras)
+   {
+      this.compras = compras;
    }
 }
