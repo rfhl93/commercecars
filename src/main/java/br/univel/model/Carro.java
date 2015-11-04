@@ -9,12 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import br.univel.model.Venda;
+import javax.persistence.ManyToOne;
+import br.univel.model.Compra;
 
 @Entity
 @Table(name = "carro")
 public class Carro implements Serializable
 {
- 
+
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
    @Column(name = "id", updatable = false, nullable = false)
@@ -58,6 +61,12 @@ public class Carro implements Serializable
 
    @Column(length = 15, name = "valor", nullable = false)
    private Double valor;
+
+   @ManyToOne
+   private Venda venda;
+
+   @ManyToOne
+   private Compra compra;
 
    public Long getId()
    {
@@ -258,5 +267,25 @@ public class Carro implements Serializable
       if (valor != null)
          result += ", valor: " + valor;
       return result;
+   }
+
+   public Venda getVenda()
+   {
+      return this.venda;
+   }
+
+   public void setVenda(final Venda venda)
+   {
+      this.venda = venda;
+   }
+
+   public Compra getCompra()
+   {
+      return this.compra;
+   }
+
+   public void setCompra(final Compra compra)
+   {
+      this.compra = compra;
    }
 }

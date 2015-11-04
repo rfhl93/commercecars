@@ -11,6 +11,11 @@ import javax.persistence.Version;
 import java.lang.Override;
 import br.univel.model.Usuario;
 import javax.persistence.ManyToOne;
+import br.univel.model.Carro;
+import java.util.Set;
+import java.util.HashSet;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "compra")
@@ -27,6 +32,9 @@ public class Compra implements Serializable
 
    @ManyToOne
    private Usuario usuario;
+
+   @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
+   private Set<Carro> carros = new HashSet<Carro>();
 
    public Long getId()
    {
@@ -96,5 +104,15 @@ public class Compra implements Serializable
    public void setUsuario(final Usuario usuario)
    {
       this.usuario = usuario;
+   }
+
+   public Set<Carro> getCarro()
+   {
+      return this.carros;
+   }
+
+   public void setCarro(final Set<Carro> carro)
+   {
+      this.carros = carro;
    }
 }
